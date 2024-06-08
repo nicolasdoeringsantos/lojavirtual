@@ -28,6 +28,14 @@ class ProductsController extends Controller
      {
         //dd($request->all());return;
          //não esquecer import do Product model.
+
+         $request->validate([
+            'name' => 'required|min:2|max:20',
+            'description' => 'max:200',
+            'price' => 'required|numeric|gt:0',
+            'quantity' => 'required|numeric',
+         ]);
+
          Product::create([
              'name' => $request->name,
              'description' => $request->description,
